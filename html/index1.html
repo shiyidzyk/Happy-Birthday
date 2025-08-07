@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日祝福</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: '微软雅黑', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .birthday-hat {
+            font-size: 50px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            font-size: 28px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInText 1s forwards;
+            animation-delay: 0.5s;
+        }
+        
+        .message {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .message p {
+            opacity: 0;
+            animation: fadeInText 1s forwards;
+        }
+        
+        .message p:nth-child(1) {
+            animation-delay: 1s;
+        }
+        
+        .message p:nth-child(2) {
+            animation-delay: 2s;
+        }
+        
+        .message p:nth-child(3) {
+            animation-delay: 3s;
+        }
+        
+       .cake {
+    font-size: 60px;
+    margin: 20px 0;
+    opacity: 0;
+    animation: fadeInDown 1s forwards;
+    animation-delay: 3.5s;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        
+        .name {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        .wish-list {
+            text-align: left;
+            background: #fff5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeInText 1s forwards;
+            animation-delay: 4s;
+        }
+        
+        .wish-list h3 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        .wish-list ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        
+        .wish-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #666;
+            opacity: 0;
+            animation: fadeInText 0.5s forwards;
+        }
+        
+        .wish-list li:nth-child(1) {
+            animation-delay: 4.5s;
+        }
+        
+        .wish-list li:nth-child(2) {
+            animation-delay: 5s;
+        }
+        
+        .wish-list li:nth-child(3) {
+            animation-delay: 5.5s;
+        }
+        
+        .wish-list li:nth-child(4) {
+            animation-delay: 6s;
+        }
+        
+        .wish-list li:before {
+            content: "🎂";
+            position: absolute;
+            left: 0;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeInText 1s forwards;
+            animation-delay: 6.5s;
+        }
+        
+        /* 为最后一段祝福语添加动画 */
+        .final-wish {
+            opacity: 0;
+            animation: fadeInText 1s forwards;
+            animation-delay: 7s;
+        }
+        
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 音乐播放按钮样式 */
+        .music-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            z-index: 10;
+            -webkit-tap-highlight-color: transparent; /* 移动端点击高亮 */
+        }
+        
+        .music-button:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        .music-button.playing {
+            background: #4CAF50;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .message {
+                font-size: 16px;
+            }
+            
+            .cake {
+                font-size: 50px;
+            }
+            
+            .music-button {
+                font-size: 12px;
+                padding: 6px 10px;
+                top: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="backgroundMusic" loop>
+        <source src="../music/1.mp3" type="audio/mpeg">
+        <source src="../music/1.ogg" type="audio/ogg">
+        <source src="../music/1.wav" type="audio/wav">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <div class="container">
+        <!-- 添加音乐控制按钮 -->
+        <button class="music-button" id="musicButton">点这里停止播放音乐</button>
+        
+        <div class="birthday-hat">🎉</div>
+        <h1>生日快乐！</h1>
+        <div class="message">
+            <p>亲爱的<span class="name">朋友</span>：</p>
+            <p>在这个特别的日子里，愿你的生活如阳光般灿烂，如花朵般美丽。</p>
+            <p>愿你拥有不设限的人生，每一天都能带着希望和勇气，为自己开启一段美好的新旅程。</p>
+        </div>
+        <div class="cake">🎂</div>
+        <div class="wish-list">
+            <h3>祝愿你：</h3>
+            <ul>
+                <li>笑容常在，喜乐无忧</li>
+                <li>平安顺遂，好运常伴</li>
+                <li>心之所向，皆能抵达</li>
+                <li>所求皆得，未来璀璨</li>
+            </ul>
+        </div>
+        <div class="message">
+            <p class="final-wish">愿你的每一个愿望都能实现，愿你的每一天都像今天一样特别！</p>
+        </div>
+        <div class="footer">
+            <p>祝你生日快乐！🎈</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const musicButton = document.getElementById('musicButton');
+            const audio = document.getElementById('backgroundMusic');
+            
+            // 设置音量为正常音量
+            audio.volume = 0.7;
+            
+            // 页面加载完成后自动播放
+            audio.play().then(() => {
+                musicButton.classList.add('playing');
+            }).catch(e => {
+                console.log('自动播放失败:', e);
+                // 如果自动播放失败，提示用户手动点击按钮
+                musicButton.textContent = '点这里播放音乐';
+            });
+            
+            // 音乐控制按钮点击事件
+            musicButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        musicButton.textContent = '点这里停止播放音乐';
+                        musicButton.classList.add('playing');
+                    }).catch(e => {
+                        console.log('播放失败:', e);
+                    });
+                } else {
+                    audio.pause();
+                    musicButton.textContent = '点这里播放音乐';
+                    musicButton.classList.remove('playing');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
